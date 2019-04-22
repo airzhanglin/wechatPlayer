@@ -26,8 +26,8 @@ export default {
 | ---------- | ---- | ------- | ----------- |
 | url | String |  | 播放地址 |
 | title | String |  | 音乐名称 |
-| autoplay | Boolean | false | 是否自动播放（移动无法自动播放） |
-| styleObject | Object | { width: "289px",  height: "71px"} | 播放器带下和其他自定义样式 |
+| autoplay | Boolean | false | 是否自动播放（移动端无法自动播放） |
+| styleObject | Object | { width: "289px",  height: "71px"} | 播放器大小和其他自定义样式 |
 
 ## Method
 | 名称 | 参数 | 描述 |
