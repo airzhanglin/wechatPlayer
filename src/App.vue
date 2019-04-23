@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <wechat-player title="差不多先生-热狗.mp3123111111111111111111111111"
+    <wechat-player playerid="audioPlayer1" title="差不多先生-热狗.mp3123111111111111111111111111"
+      url="https://shoppingmall.oss-cn-shanghai.aliyuncs.com/%E5%B7%AE%E4%B8%8D%E5%A4%9A%E5%85%88%E7%94%9F.mp3"
+    ></wechat-player>
+      <wechat-player playerid="audioPlayer2" title="差不多先生-热狗.mp3123111111111111111111111111"
       url="https://shoppingmall.oss-cn-shanghai.aliyuncs.com/%E5%B7%AE%E4%B8%8D%E5%A4%9A%E5%85%88%E7%94%9F.mp3"
     ></wechat-player>
   </div>
