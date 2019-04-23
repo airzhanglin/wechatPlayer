@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import wechatPlayer from "webchatplayer";
+import wechatPlayer from "./wechatPlayer/index.js";
 export default {
   name: "app",
   components: { wechatPlayer },
