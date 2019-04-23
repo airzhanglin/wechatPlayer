@@ -1,7 +1,10 @@
 <template>
   <div class="wechatplayer-wraper" :style="styleObject">
     <div class="wechatplayer-box">
-      <div class="player-icon" :class="{'is-play':playing}" @click="handlePlay"></div>
+      <div class="player-icon" v-if="!playing" @click="handlePlay"></div>
+      <div class="playing-icon" v-else @click="handlePlay">
+        <span class="is-play"></span>
+      </div>
       <div class="player-info">
         <p class="player-name" v-text="title"></p>
         <div class="progress-praent" @click.stop="progressClick($event)">
@@ -184,7 +187,7 @@ export default {
   }
 };
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 $box-bg: #f8f8f8;
 @mixin bg-logo-x($w, $h, $url) {
   width: $w;
@@ -218,21 +221,46 @@ $box-bg: #f8f8f8;
       @include bg-logo-x(30px, 30px, "../assets/img/voice");
       flex: 0 0 30px;
       margin-right: 10px;
-      &.is-play{
-        background-image: url('../assets/img/playing.gif');
+    }
+    .playing-icon {
+      width: 30px;
+      height: 30px;
+      margin-right: 10px;
+      border: 2px solid #1aad19;
+      border-radius: 100%;
+      text-align: center;
+      line-height: 20px;
+      box-sizing: border-box;
+      .is-play {
+        background: transparent url("../assets/img/playing.png") no-repeat 0 0;
+        width: 18px;
+        height: 25px;
+        vertical-align: middle;
+        display: inline-block;
+        background-size: 47px 25px;
+        -webkit-animation: audio_playing 1s infinite;
+        background-position: 0px center;
+        margin-left: 8px
       }
     }
     .player-info {
       flex: 1;
+      min-width: 0;
       .player-name {
         color: #626262;
         font-size: 13px;
         margin: 0;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        word-break: break-all;
       }
     }
     .progress-praent {
+      margin-top: 2px;
       padding-top: 4px;
       padding-bottom: 7px;
+      margin-bottom: 2px;
       box-sizing: border-box;
       .player-progress {
         height: 2px;
@@ -276,6 +304,23 @@ $box-bg: #f8f8f8;
       justify-content: space-between;
       font-size: 11px;
       color: #999999;
+    }
+  }
+  @-webkit-keyframes audio_playing {
+    30% {
+      background-position: 0px center;
+    }
+    31% {
+      background-position: -18px center;
+    }
+    61% {
+      background-position: -18px center;
+    }
+    61.5% {
+      background-position: -36px center;
+    }
+    100% {
+      background-position: -36px center;
     }
   }
 }
