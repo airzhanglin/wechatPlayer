@@ -1,6 +1,7 @@
 # wechatplayer
 
-> A Vue 2.x audio player component based on [wechatplayer](https://github.com/airzhanglin/wechatPlayer).
+写了一个类似于微信公众号网页播放器
+![此处输入图片的描述][1]
 
 
 ## Install
@@ -35,7 +36,19 @@ export default {
 | play | none | 播放 |
 | pause | none | 暂停 |
 
+Example:
 
+```js
+<wechat-player ref="wechaplayer"></wechat-player>
+<button @click="play">播放</button>
+
+export default {
+    methods: {
+      play() {
+        this.$refs.wechaplayer.play();
+      }
+    }
+```
 ## Events
 | 名称 | 参数 | 描述 |
 | ---- | ------ | ----------- |
@@ -58,3 +71,5 @@ export default {
     }
 ```
 
+
+  [1]: http://shoppingmall.oss-cn-shanghai.aliyuncs.com/85b03fe8907838ab737e69806db7d2d.png
