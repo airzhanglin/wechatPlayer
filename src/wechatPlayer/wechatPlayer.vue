@@ -10,13 +10,7 @@
         <div class="progress-praent" @click.stop="progressClick($event)">
           <div class="player-progress" ref="barRef">
             <div class="progress" ref="progressRef" :style="{width:prCurrentTime+'%'}"></div>
-            <div
-              class="circle"
-              :style="{left:prCurrentTime+'%'}"
-              @touchstart.stop.prevent="dragStart($event)"
-              @touchmove.stop.prevent="dragmove($event)"
-              @touchend.stop.prevent="dragEnd($event)"
-            >
+            <div class="circle" :style="{left:prCurrentTime+'%'}" @touchstart.stop.prevent="dragStart($event)" @touchmove.stop.prevent="dragmove($event)" @touchend.stop.prevent="dragEnd($event)">
               <span class="circle-center"></span>
             </div>
           </div>
@@ -28,23 +22,17 @@
         </div>
       </div>
     </div>
-    <audio
-      :src="url"
-      id="audio-player"
-      controls
-      :autoplay="autoplay"
-      @timeupdate="updateTime"
-      @canplay="canPlay"
-      @error="loadError"
-      preload="preload"
-      @ended="ended"
-    ></audio>
+    <audio :src="url" :id="playerid" controls :autoplay="autoplay" @timeupdate="updateTime" @canplay="canPlay" @error="loadError" preload="preload" @ended="ended"></audio>
   </div>
 </template>
 <script>
 export default {
   name: "webchatPlayer",
   props: {
+    playerid: {
+      type: String,
+      default: "audio-player"
+    },
     url: {
       type: String,
       default: ""
@@ -92,7 +80,7 @@ export default {
   },
   methods: {
     initPlyer() {
-      this.player = document.getElementById("audio-player");
+      this.player = document.getElementById(this.playerid);
     },
     handlePlay() {
       //播放操作
@@ -116,7 +104,7 @@ export default {
     updateTime() {
       //播放器返回的时间
       this.currentTime = this.player.currentTime;
-      this.prCurrentTime = (this.currentTime / this.duration) * 100;
+      this.prCurrentTime = this.currentTime / this.duration * 100;
       this.$emit("currentTime", this.currentTime);
     },
     canPlay() {
@@ -129,6 +117,7 @@ export default {
     },
     ended() {
       this.$emit("ended"); //播放完毕
+      this.playing = false;
     },
     dragStart(e) {
       //手指触发时
@@ -209,7 +198,7 @@ $box-bg: #f8f8f8;
   padding: 0 18px;
   border-radius: 4px;
   border: 1px solid rgba(230, 230, 230, 1);
-  #audio-player {
+  audio {
     display: none;
   }
   .wechatplayer-box {
@@ -240,7 +229,7 @@ $box-bg: #f8f8f8;
         background-size: 47px 25px;
         -webkit-animation: audio_playing 1s infinite;
         background-position: 0px center;
-        margin-left: 8px
+        margin-left: 8px;
       }
     }
     .player-info {
@@ -286,7 +275,7 @@ $box-bg: #f8f8f8;
             display: inline-block;
             position: absolute;
             top: 0;
-            left: 0;
+            left: 0; 
             right: 0;
             bottom: 0;
             margin: auto;

@@ -25,6 +25,7 @@ export default {
 
 | 名称    | 类型 | 默认值 | 说明 |
 | ---------- | ---- | ------- | ----------- |
+| playerid | String | audio-player | 定义播放器的id |
 | url | String |  | 播放地址 |
 | title | String |  | 音乐名称 |
 | autoplay | Boolean | false | 是否自动播放（移动端无法自动播放） |
