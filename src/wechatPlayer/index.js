@@ -7,9 +7,9 @@ import wechatPlayer from './wechatPlayer.vue'
 wechatPlayer.install = function(Vue){
     Vue.component(wechatPlayer.name,wechatPlayer);
 }
-// 这里的判断很重要
-if (typeof window !== 'undefined' && window.Vue) { 
-    window.Vue.use(comment) 
-}
+/* 支持使用标签的方式引入 */
+if (typeof window !== 'undefined' && window.Vue) {
+    install(window.Vue);
+  }
 
 export default wechatPlayer
